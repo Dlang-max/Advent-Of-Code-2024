@@ -8,6 +8,7 @@
 #define BUFFER_SIZE 142
 
 int search(char wordSearch[ROWS][COLS], int row, int col);
+bool pattern_matches(char wordSearch[ROWS][COLS], char pattern[4], int row, int col);
 bool is_valid_pos(int row, int col);
 
 int main() {
@@ -49,38 +50,25 @@ int search(char wordSearch[ROWS][COLS], int row, int col) {
      !is_valid_pos(row + 1, col + 1)) {
     return 0;
   }
-  
-  // M's on left
-  if(wordSearch[row - 1][col - 1] == 'M' &&
-     wordSearch[row + 1][col - 1] == 'M' &&
-     wordSearch[row - 1][col + 1] == 'S' &&
-     wordSearch[row + 1][col + 1] == 'S') {
-    return 1;
-  }
-  // M's on right
-   if(wordSearch[row - 1][col - 1] == 'S' &&
-     wordSearch[row + 1][col - 1] == 'S' &&
-     wordSearch[row - 1][col + 1] == 'M' &&
-     wordSearch[row + 1][col + 1] == 'M') {
-    return 1;
-   }
 
-  // M's on top
-   if(wordSearch[row - 1][col - 1] == 'M' &&
-     wordSearch[row + 1][col - 1] == 'S' &&
-     wordSearch[row - 1][col + 1] == 'M' &&
-     wordSearch[row + 1][col + 1] == 'S') {
-    return 1;
-   }
-  // M's on bottom
-  if(wordSearch[row - 1][col - 1] == 'S' &&
-     wordSearch[row + 1][col - 1] == 'M' &&
-     wordSearch[row - 1][col + 1] == 'S' &&
-     wordSearch[row + 1][col + 1] == 'M') {
-    return 1;
-   }
+  char patterns[4][4] = {
+    {'M', 'M', 'S', 'S'},
+    {'S', 'S', 'M', 'M'},
+    {'M', 'S', 'M', 'S'},
+    {'S', 'M', 'S', 'M'},
+  };
+    for(int i = 0; i < 4; i++) {
+      if(pattern_matches(wordSearch, patterns[i], row, col)) {
+        return 1;
+      }
+    }
 
   return 0;  
+}
+
+bool pattern_matches(char wordSearch[ROWS][COLS], char pattern[4], int row, int col) {
+  return pattern[0] == wordSearch[row - 1][col - 1] && pattern[1] == wordSearch[row + 1][col - 1] &&
+    pattern[2] == wordSearch[row - 1][col + 1] && pattern[3] == wordSearch[row + 1][col + 1];
 }
 
 bool is_valid_pos(int row, int col) {
