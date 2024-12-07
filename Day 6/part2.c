@@ -57,6 +57,8 @@ int main() {
     }
     row++;
   }
+  fclose(f);
+  
   int numLoopsCreated = simulate_guard(guard);
   printf("Loops Created: %d\n", numLoopsCreated);
   

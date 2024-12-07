@@ -32,8 +32,8 @@ int main() {
     }
     row++;
   }
+  flcose(f);
   
-
   int uniqueSpaces = simulate_guard(grid, guardRow, guardCol);
   printf("Unique Spaces Visited: %d\n", uniqueSpaces);
   return 0;
