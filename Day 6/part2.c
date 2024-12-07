@@ -46,7 +46,7 @@ int main() {
         
         obstacles[row][col] = false;
     
-        // Mark the guard's starting position as an invalid place
+        // Mark the guard's starting position as an invalid location
         // to place an obstacle
         prevPlacedObstacles[row][col] = true;
       } else if (buffer[col] == '#') {
@@ -103,7 +103,7 @@ bool is_looping(Guard guard) {
     int nextRow = guard.row + rDirs[guard.dir];
     int nextCol = guard.col + cDirs[guard.dir];
 
-    // We leave the frid on our next move
+    // We leave the grid on our next move
     if(!in_bounds(nextRow, nextCol)) {
       return false;
     }
