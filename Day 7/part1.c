@@ -14,7 +14,7 @@ int main() {
   char buffer[BUFFER_SIZE];
   FILE *f = fopen("./input.txt", "r");
 
-  unsigned long long totalCalibrationResult = 0;
+  long totalCalibrationResult = 0;
   while(fgets(buffer, BUFFER_SIZE, f)) {
     char bufferCopy[BUFFER_SIZE];
     strcpy(bufferCopy, buffer);
@@ -36,7 +36,7 @@ int main() {
   }  
   fclose(f);
 
-  printf("Total Calibration Result: %lld\n", totalCalibrationResult);
+  printf("Total Calibration Result: %ld\n", totalCalibrationResult);
   return 0;
 }
 
