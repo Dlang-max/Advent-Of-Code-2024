@@ -17,9 +17,8 @@ char grid[ROWS][2 * COLS];
 
 void simulate_robot(char *moves);
 void move_robot(int dRow, int dCol);
-void move_boxes_up_or_down(int row, int col, int dRow, int dCol);
 bool can_move(int row, int col, int dRow, int dCol);
-bool in_bounds(int row, int col);
+void move_boxes_up_or_down(int row, int col, int dRow, int dCol);
 void print_grid();
 
 int main() {
@@ -47,18 +46,19 @@ int main() {
     }
     row++;
   }
-
+  // Initial Grid
   print_grid();
 
   // Get rid of the new line character separating the grid
   // and directions
   fgets(buffer, BUFFER_SIZE, f);
 
-  /* // Read in the directions */
+  /* Read in the directions */
   while(fgets(buffer, BUFFER_SIZE, f)) {
     simulate_robot(buffer);
   }
 
+  // Final Grid
   print_grid();
   
   // Calculate sum of boxes' GPS coordinates
@@ -101,11 +101,6 @@ void simulate_robot(char *moves) {
     }
   }
 }
-
-
-
-
-
 
 void move_robot(int dRow, int dCol) {
   // Move robot and boxes up or down
@@ -213,14 +208,6 @@ void move_boxes_up_or_down(int row, int col, int dRow, int dCol) {
     grid[row + dRow][col] = '[';
     grid[row + dRow][col + 1] = ']';
   }
-}
-
-
-
-
-
-bool in_bounds(int row, int col) {
-  return row >= 0 && row < ROWS && col >= 0 && col < 2 * COLS;
 }
 
 void print_grid() {
