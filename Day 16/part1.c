@@ -60,6 +60,7 @@ int main() {
     }
     row++;
   }
+  fclose(f);
 
   long lowestScore = dijkstra();
   printf("Lowest Score: %ld\n", lowestScore);  
@@ -75,8 +76,12 @@ long dijkstra() {
   int dCol[4] = {1, 0, -1, 0};
   
   PQ *pq = pq_init();
-  PQNode startNode = {0, start[0], start[1], 0};
-  pq_offer(pq, &startNode);
+  PQNode *startNode = calloc(1, sizeof(PQNode));
+  startNode->score = 0;
+  startNode->row = start[0];
+  startNode->col = start[1];
+  startNode->dir = 0;
+  pq_offer(pq, startNode);
   while(!pq_empty(pq)) {
     PQNode *polledNode = pq_poll(pq);
     long score = polledNode->score;
@@ -85,11 +90,13 @@ long dijkstra() {
     int dir = polledNode->dir;
     
     if(row == end[0] && col == end[1]) {
+      free(polledNode);
       pq_free(pq);
       return score;
     }
 
     if(visited[row][col] || grid[row][col] == '#') {
+      free(polledNode);
       continue;
     }
 
@@ -121,9 +128,10 @@ long dijkstra() {
     counterClockwiseTurn->col = col + dCol[newDir];
     counterClockwiseTurn->dir = newDir;
     pq_offer(pq, counterClockwiseTurn);
+    
+    free(polledNode);
   }
   
-  pq_free(pq);
   return -1;
 }
 
@@ -173,9 +181,10 @@ PQ *pq_init() {
 
 void pq_free(PQ *pq) {
   PQNode **elements = pq->elements;
-  for(int i = 0; i < pq->size; i++) {
+  for(int i = 0; elements[i] != NULL; i++) {
     free(elements[i]);
   }
+  
   free(elements);
   free(pq);
 }
