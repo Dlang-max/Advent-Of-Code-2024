@@ -50,6 +50,7 @@ int main() {
     grid[row][col] = '#';
     bytes++;
   }
+  fclose(f);
 
   print_grid();
 

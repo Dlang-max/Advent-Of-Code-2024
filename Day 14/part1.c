@@ -32,13 +32,14 @@ int main() {
 
     update_quadrant_totals(quadrantTotals, endRow, endCol);
   }
+  fclose(f);
 
   long safetyFactor = 1;
   for(int i = 0; i < 4; i++) {
     safetyFactor *= quadrantTotals[i];
   }
 
-
+  
   printf("Safety Factor: %ld\n", safetyFactor);
   
   return 0;

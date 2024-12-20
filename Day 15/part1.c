@@ -58,6 +58,7 @@ int main() {
       }
     }
   }
+  fclose(f);
 
   printf("GPS Sum: %ld\n", gpsSum);
   return 0;

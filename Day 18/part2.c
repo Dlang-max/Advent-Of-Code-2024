@@ -56,6 +56,7 @@ int main() {
       break;
     }
   }
+  fclose(f);
 
   return 0;
 }

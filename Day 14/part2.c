@@ -40,6 +40,7 @@ int main() {
     Robot robot = {row, col, dRow, dCol};
     robots[currRobot++] = robot;
   }
+  fclosef(f);
 
   int iterations = 0;
   while(true) {
