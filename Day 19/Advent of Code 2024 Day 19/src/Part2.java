@@ -28,7 +28,7 @@ public class Part2 {
 
     public static void main(String[] args) {
         try {
-            File f = new File("C:\\Users\\langd\\OneDrive\\Desktop\\Advent of Code 2024 Day 19\\src\\input.txt");
+            File f = new File("./input.txt");
             Scanner scanner = new Scanner(f);
 
             // Read in input from input file
