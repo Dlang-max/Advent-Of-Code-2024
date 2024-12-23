@@ -6,7 +6,7 @@ public class Part2 {
     public static Set<String> maximumConnectedCliques = new HashSet<>();
     // Bron-Kerbosch Algorithm
     // Code inspired by: https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm
-    private static void getLargestConnectedClique(Set<String> R, Set<String> P, Set<String> X) {
+    private static void getMaximalConnectedClique(Set<String> R, Set<String> P, Set<String> X) {
         // If P and X are the empty Set, take R as a maximal clique and check
         // if it is the largest maximal clique.
         if(P.isEmpty() && X.isEmpty()) {
@@ -50,7 +50,7 @@ public class Part2 {
                 }
             }
             // BronKerboschWithPivot(R U v, P n neighbors(v), X n neighbors(v))
-            getLargestConnectedClique(newR, newP, newX);
+            getMaximalConnectedClique(newR, newP, newX);
             // Remove vertex from P
             P.remove(vertex);
             // Add vertex to X
@@ -73,7 +73,7 @@ public class Part2 {
             }
 
             long start = System.currentTimeMillis();
-            getLargestConnectedClique(new HashSet<>(), graph.keySet(), new HashSet<>());
+            getMaximalConnectedClique(new HashSet<>(), graph.keySet(), new HashSet<>());
             List<String> nodes = new ArrayList<>(maximumConnectedCliques);
             Collections.sort(nodes);
             String password = String.join(",", nodes);
