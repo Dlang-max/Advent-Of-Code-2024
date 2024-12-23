@@ -4,7 +4,7 @@ import java.io.*;
 public class Part2 {
     public static Map<String, Set<String>> graph = new HashMap<>();
     public static Set<String> maximumConnectedCliques = new HashSet<>();
-
+    // Bron-Kerbosch Algorithm
     // Code inspired by: https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm
     private static void getLargestConnectedClique(Set<String> R, Set<String> P, Set<String> X) {
         // If P and X are the empty Set, take R as a maximal clique and check
@@ -18,8 +18,7 @@ public class Part2 {
 
         // Chose a pivot from the Union of P and X
         String pivot = "";
-        Iterator<String> pIter = P.iterator();
-        Iterator<String> xIter = X.iterator();
+        Iterator<String> pIter = P.iterator(), xIter = X.iterator();
         if(pIter.hasNext()) {
             pivot = pIter.next();
         } else {
