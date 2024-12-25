@@ -54,7 +54,7 @@ public class Part1 {
 
     public static void main(String[] args) {
         try {
-            File f = new File("C:\\Users\\langd\\OneDrive\\Desktop\\Advent of Code 2024 Day 24\\src\\input.txt");
+            File f = new File("./input.txt");
             Scanner scanner = new Scanner(f);
 
             while(scanner.hasNextLine()) {
